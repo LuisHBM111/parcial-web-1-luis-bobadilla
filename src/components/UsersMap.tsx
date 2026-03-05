@@ -7,7 +7,7 @@ const UsersMap = async () => {
 
     return (
         <div className="flex justify-around w-full">
-            <ul className="flex flex-wrap justify-evenly">
+            <ul className="flex flex-wrap justify-evenly px-5">
                 {users.map((user) => (
                     <li key={user.id}>
                         <UserCard {...user} />

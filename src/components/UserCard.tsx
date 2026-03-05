@@ -3,28 +3,49 @@ import Image from "next/image";
 
 export type Props = {
     id: string
-    username: string
-    email: string
-    description: string
     image: string
+    name: string
+    house: string
+}
+const BgColorHouses = {
+    Gryffindor: 'bg-[#740001]',
+    Slytherin: 'bg-[#1A472A]',
+    Ravenclaw: 'bg-[#0E1A40]',
+    Hufflepuff: 'bg-[#FFD800]',
 }
 
-const UserCard = ({id, username, email, description, image}: Props) => {
+const BorderColorHouses = {
+    Gryffindor: 'border-[#740001]',
+    Slytherin: 'border-[#1A472A]',
+    Ravenclaw: 'border-[#0E1A40]',
+    Hufflepuff: 'border-[#FFD800]',
+    NoHouse: 'border-[#D1D5DB]',
+}
+
+function bgColor(color: { house: string }) {
+    if(color.house === "Gryffindor") {
+        return 'bg-[#740001]'
+    }
+    else if(color.house === "Slytherin") {
+        return 'bg-[#1A472A]'
+    }
+    else if(color.house === "Ravenclaw") {
+        return 'bg-[#0E1A40]'
+    }
+    else if(color.house === "Hufflepuff") {
+        return 'bg-[#FFD800]'
+    }
+    return 'bg-[#FFD800]'
+}
+
+const UserCard = ({id, image, name, house}: Props) => {
     return (
-        <div className="flex items-center p-2 m-2 shadow-lg rounded-lg bg-background border border-accent-foreground/15 hover:border-accent-foreground">
-            <Link href={`/marketplace/${id}`} id="item-card" className="block w-[410]">
-                <Image src={image} alt={username} width={410} height={300} className="poster rounded-2xl object-cover" />
-                <div className="flex flex-row mt-3 p-3">
-                    <h3 className="font-bold">${username}</h3>
-                    <p className="ml-auto font-bold">{email}</p>
+        <div className="flex items-center shadow-lg border border-accent-foreground/15 hover:border-accent-foreground rounded-2xl">
+            <Link href={`/profile/${id}`} id="Card" className="block w-[410] rounded-2xl">
+                <div className={bgColor({house})}>
+                    <span className="text-center font-bold text-white">{name}</span>
                 </div>
-
-                <p className="title mx-3">{username}</p>
-
-                <div className="flex flex-row mt-3 p-3">
-                    <p>{description}</p>
-                    <p className="ml-auto">{id}</p>
-                </div>
+                <Image src={image} alt={name} width={410} height={300} className="poster object-cover" />
             </Link>
         </div>
     )

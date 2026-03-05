@@ -1,12 +1,11 @@
 export type user = {
     id: string
-    username: string
-    email: string
-    description: string
     image: string
+    name: string
+    house: string
 }
 
-const baseURL = ""
+const baseURL = "https://hp-api.onrender.com"
 
 if (!baseURL) {
     throw new Error("api undefined");
@@ -14,7 +13,7 @@ if (!baseURL) {
 
 export async function getUsers(): Promise<user[]> {
 
-    const response = await fetch(`${baseURL}/users`, {})
+    const response = await fetch(`${baseURL}/api/characters`, {})
 
     if (!response.ok) {
         throw new Error("api undefined");
@@ -22,13 +21,13 @@ export async function getUsers(): Promise<user[]> {
 
     const data: user[] = await response.json();
 
-    return data.slice(0, 10);
+    return data.slice(0, 12);
 
 }
 
 export async function getUser(id: string): Promise<user> {
 
-    const response = await fetch(`${baseURL}/users/${id}`, {})
+    const response = await fetch(`${baseURL}/api/character/${id}`, {})
 
     if (!response.ok) {
         throw new Error("api undefined");
@@ -36,6 +35,6 @@ export async function getUser(id: string): Promise<user> {
 
     const data = await response.json();
 
-    return data.profile
+    return data
 
 }
