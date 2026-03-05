@@ -10,6 +10,8 @@ export default async function Page(params: PageProps<'/[lang]'>) {
     const dict = await getDictionary(lang)
 
     return (
-        <div className="bg-sky-200 flex items-center justify-center">{dict.title}</div>
+        <div className="bg-sky-200 flex items-center justify-start mask-radial-at-left mask-radial-from-50% mask-radial-to-80%">
+            <Link href="/profile" className="font-bold text-6xl">{dict.profile}</Link>
+        </div>
     );
 }
